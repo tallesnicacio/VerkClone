@@ -1,0 +1,170 @@
+{
+  "common": {
+    "appName": "Verk CRM",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "add": "Adicionar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar",
+    "close": "Fechar",
+    "confirm": "Confirmar",
+    "yes": "Sim",
+    "no": "Não",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso"
+  },
+  "popup": {
+    "title": "Verk CRM",
+    "subtitle": "Gerenciador para WhatsApp Web",
+    "tabs": {
+      "dashboard": "Dashboard",
+      "tools": "Ferramentas",
+      "about": "Sobre"
+    },
+    "dashboard": {
+      "welcome": "Bem-vindo ao Verk CRM",
+      "description": "Otimize seu atendimento no WhatsApp Web",
+      "stats": {
+        "contacts": "Contatos",
+        "reminders": "Lembretes",
+        "tabs": "Abas"
+      },
+      "openWhatsApp": "Abrir WhatsApp Web"
+    },
+    "tools": {
+      "title": "Ferramentas",
+      "quickReplies": "Respostas Rápidas",
+      "kanban": "Kanban",
+      "bulkSend": "Envio em Massa",
+      "exportContacts": "Exportar Contatos",
+      "aiAssistant": "Assistente AI",
+      "comingSoon": "Em breve"
+    },
+    "about": {
+      "title": "Sobre",
+      "version": "v1.0.0",
+      "description": "Extensão para Chrome que adiciona recursos de CRM ao WhatsApp Web.",
+      "features": "Recursos Planejados:",
+      "settings": "Configurações",
+      "developedBy": "Desenvolvido para uso pessoal"
+    }
+  },
+  "options": {
+    "title": "Configurações - Verk CRM",
+    "general": {
+      "title": "Geral",
+      "language": "Idioma",
+      "notifications": "Ativar notificações"
+    },
+    "bulkMessage": {
+      "title": "Envio em Massa",
+      "delay": "Delay entre mensagens (segundos)",
+      "delayHelp": "Recomendado: 60-90 segundos para evitar bloqueios",
+      "limit": "Limite diário de mensagens",
+      "limitHelp": "Limite de segurança para evitar ban"
+    },
+    "saveSuccess": "Configurações salvas com sucesso!"
+  },
+  "features": {
+    "sendToNumber": {
+      "title": "Enviar para Número",
+      "placeholder": "Digite o número (com DDD)",
+      "send": "Abrir Chat",
+      "invalidNumber": "Número inválido",
+      "success": "Chat aberto com sucesso!"
+    },
+    "quickReplies": {
+      "title": "Respostas Rápidas",
+      "add": "Nova Resposta",
+      "edit": "Editar Resposta",
+      "delete": "Excluir Resposta",
+      "nameLabel": "Nome",
+      "contentLabel": "Conteúdo",
+      "categoryLabel": "Categoria",
+      "shortcutLabel": "Atalho",
+      "useCount": "Usado {{count}} vezes"
+    },
+    "contacts": {
+      "title": "Contatos",
+      "add": "Novo Contato",
+      "edit": "Editar Contato",
+      "delete": "Excluir Contato",
+      "export": "Exportar Contatos",
+      "import": "Importar Contatos",
+      "noContacts": "Nenhum contato encontrado",
+      "lastMessage": "Última mensagem"
+    },
+    "notes": {
+      "title": "Notas",
+      "add": "Nova Nota",
+      "edit": "Editar Nota",
+      "delete": "Excluir Nota",
+      "noNotes": "Nenhuma nota para este contato",
+      "placeholder": "Digite sua nota..."
+    },
+    "tags": {
+      "title": "Tags",
+      "add": "Nova Tag",
+      "edit": "Editar Tag",
+      "delete": "Excluir Tag",
+      "nameLabel": "Nome",
+      "colorLabel": "Cor",
+      "noTags": "Nenhuma tag criada"
+    },
+    "kanban": {
+      "title": "Kanban",
+      "addColumn": "Nova Coluna",
+      "addCard": "Novo Card",
+      "editColumn": "Editar Coluna",
+      "deleteColumn": "Excluir Coluna",
+      "columnName": "Nome da Coluna",
+      "noColumns": "Nenhuma coluna criada"
+    },
+    "reminders": {
+      "title": "Lembretes",
+      "add": "Novo Lembrete",
+      "edit": "Editar Lembrete",
+      "delete": "Excluir Lembrete",
+      "titleLabel": "Título",
+      "messageLabel": "Mensagem",
+      "dateLabel": "Data e Hora",
+      "recurringLabel": "Recorrente",
+      "noReminders": "Nenhum lembrete ativo",
+      "overdue": "Atrasado"
+    },
+    "bulkSend": {
+      "title": "Envio em Massa",
+      "campaignName": "Nome da Campanha",
+      "message": "Mensagem",
+      "selectContacts": "Selecionar Contatos",
+      "importCSV": "Importar CSV",
+      "schedule": "Agendar Envio",
+      "sendNow": "Enviar Agora",
+      "preview": "Pré-visualizar",
+      "progress": "Progresso: {{sent}}/{{total}}",
+      "completed": "Campanha concluída!",
+      "paused": "Pausado",
+      "resume": "Retomar"
+    }
+  },
+  "messages": {
+    "contactSaved": "Contato salvo com sucesso!",
+    "contactDeleted": "Contato excluído!",
+    "noteSaved": "Nota salva!",
+    "noteDeleted": "Nota excluída!",
+    "tagSaved": "Tag salva!",
+    "tagDeleted": "Tag excluída!",
+    "reminderSaved": "Lembrete criado!",
+    "reminderDeleted": "Lembrete excluído!",
+    "messageSent": "Mensagem enviada!",
+    "messageFailed": "Falha ao enviar mensagem",
+    "whatsappNotOpen": "Abra o WhatsApp Web primeiro",
+    "invalidInput": "Dados inválidos",
+    "unexpectedError": "Erro inesperado. Tente novamente."
+  }
+}

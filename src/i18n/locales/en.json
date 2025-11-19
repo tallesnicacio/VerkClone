@@ -1,0 +1,170 @@
+{
+  "common": {
+    "appName": "Verk CRM",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "popup": {
+    "title": "Verk CRM",
+    "subtitle": "Manager for WhatsApp Web",
+    "tabs": {
+      "dashboard": "Dashboard",
+      "tools": "Tools",
+      "about": "About"
+    },
+    "dashboard": {
+      "welcome": "Welcome to Verk CRM",
+      "description": "Optimize your WhatsApp Web service",
+      "stats": {
+        "contacts": "Contacts",
+        "reminders": "Reminders",
+        "tabs": "Tabs"
+      },
+      "openWhatsApp": "Open WhatsApp Web"
+    },
+    "tools": {
+      "title": "Tools",
+      "quickReplies": "Quick Replies",
+      "kanban": "Kanban",
+      "bulkSend": "Bulk Send",
+      "exportContacts": "Export Contacts",
+      "aiAssistant": "AI Assistant",
+      "comingSoon": "Coming soon"
+    },
+    "about": {
+      "title": "About",
+      "version": "v1.0.0",
+      "description": "Chrome extension that adds CRM features to WhatsApp Web.",
+      "features": "Planned Features:",
+      "settings": "Settings",
+      "developedBy": "Developed for personal use"
+    }
+  },
+  "options": {
+    "title": "Settings - Verk CRM",
+    "general": {
+      "title": "General",
+      "language": "Language",
+      "notifications": "Enable notifications"
+    },
+    "bulkMessage": {
+      "title": "Bulk Messaging",
+      "delay": "Delay between messages (seconds)",
+      "delayHelp": "Recommended: 60-90 seconds to avoid blocks",
+      "limit": "Daily message limit",
+      "limitHelp": "Safety limit to avoid ban"
+    },
+    "saveSuccess": "Settings saved successfully!"
+  },
+  "features": {
+    "sendToNumber": {
+      "title": "Send to Number",
+      "placeholder": "Enter phone number",
+      "send": "Open Chat",
+      "invalidNumber": "Invalid number",
+      "success": "Chat opened successfully!"
+    },
+    "quickReplies": {
+      "title": "Quick Replies",
+      "add": "New Reply",
+      "edit": "Edit Reply",
+      "delete": "Delete Reply",
+      "nameLabel": "Name",
+      "contentLabel": "Content",
+      "categoryLabel": "Category",
+      "shortcutLabel": "Shortcut",
+      "useCount": "Used {{count}} times"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "add": "New Contact",
+      "edit": "Edit Contact",
+      "delete": "Delete Contact",
+      "export": "Export Contacts",
+      "import": "Import Contacts",
+      "noContacts": "No contacts found",
+      "lastMessage": "Last message"
+    },
+    "notes": {
+      "title": "Notes",
+      "add": "New Note",
+      "edit": "Edit Note",
+      "delete": "Delete Note",
+      "noNotes": "No notes for this contact",
+      "placeholder": "Type your note..."
+    },
+    "tags": {
+      "title": "Tags",
+      "add": "New Tag",
+      "edit": "Edit Tag",
+      "delete": "Delete Tag",
+      "nameLabel": "Name",
+      "colorLabel": "Color",
+      "noTags": "No tags created"
+    },
+    "kanban": {
+      "title": "Kanban",
+      "addColumn": "New Column",
+      "addCard": "New Card",
+      "editColumn": "Edit Column",
+      "deleteColumn": "Delete Column",
+      "columnName": "Column Name",
+      "noColumns": "No columns created"
+    },
+    "reminders": {
+      "title": "Reminders",
+      "add": "New Reminder",
+      "edit": "Edit Reminder",
+      "delete": "Delete Reminder",
+      "titleLabel": "Title",
+      "messageLabel": "Message",
+      "dateLabel": "Date and Time",
+      "recurringLabel": "Recurring",
+      "noReminders": "No active reminders",
+      "overdue": "Overdue"
+    },
+    "bulkSend": {
+      "title": "Bulk Send",
+      "campaignName": "Campaign Name",
+      "message": "Message",
+      "selectContacts": "Select Contacts",
+      "importCSV": "Import CSV",
+      "schedule": "Schedule Send",
+      "sendNow": "Send Now",
+      "preview": "Preview",
+      "progress": "Progress: {{sent}}/{{total}}",
+      "completed": "Campaign completed!",
+      "paused": "Paused",
+      "resume": "Resume"
+    }
+  },
+  "messages": {
+    "contactSaved": "Contact saved successfully!",
+    "contactDeleted": "Contact deleted!",
+    "noteSaved": "Note saved!",
+    "noteDeleted": "Note deleted!",
+    "tagSaved": "Tag saved!",
+    "tagDeleted": "Tag deleted!",
+    "reminderSaved": "Reminder created!",
+    "reminderDeleted": "Reminder deleted!",
+    "messageSent": "Message sent!",
+    "messageFailed": "Failed to send message",
+    "whatsappNotOpen": "Open WhatsApp Web first",
+    "invalidInput": "Invalid data",
+    "unexpectedError": "Unexpected error. Please try again."
+  }
+}
