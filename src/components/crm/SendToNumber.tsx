@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Input, Modal, ModalFooter } from '../ui';
+import { Button, Input, Modal, ModalFooter, useToast } from '../ui';
 import { validatePhoneNumber, formatPhoneNumber } from '../../utils/helpers';
-import { sendToWhatsAppTab } from '../../utils/messaging';
+import { useWhatsApp } from '../../hooks/useWhatsApp';
+import { handleError, ValidationError, WhatsAppNotConnectedError } from '../../utils/errors';
 import { t } from '../../i18n';
 
 export interface SendToNumberProps {
@@ -14,48 +15,47 @@ export const SendToNumber: React.FC<SendToNumberProps> = ({ isOpen, onClose }) =
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const { openChat } = useWhatsApp();
+  const toast = useToast();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
-    // Validar número
-    if (!validatePhoneNumber(phoneNumber)) {
-      setError(t('features.sendToNumber.invalidNumber'));
-      return;
-    }
-
-    setLoading(true);
-
     try {
+      // Validar número
+      if (!validatePhoneNumber(phoneNumber)) {
+        throw new ValidationError(
+          'Invalid phone number',
+          'phoneNumber',
+          t('features.sendToNumber.invalidNumber')
+        );
+      }
+
+      setLoading(true);
+
       // Remover caracteres não numéricos
       const cleanNumber = phoneNumber.replace(/\D/g, '');
 
       // Enviar comando para content script abrir o chat
-      const response = await sendToWhatsAppTab('OPEN_CHAT', { nameOrNumber: cleanNumber });
+      const response = await openChat(cleanNumber);
 
       if (response.success) {
-        // Sucesso - fechar modal
+        // Sucesso
+        toast.success(t('features.sendToNumber.success'));
         setPhoneNumber('');
         setError('');
         onClose();
-
-        // Mostrar feedback de sucesso
-        showSuccessToast();
       } else {
-        setError(response.error || t('messages.unexpectedError'));
+        throw new WhatsAppNotConnectedError(response.error);
       }
     } catch (err) {
-      console.error('Erro ao abrir chat:', err);
-      setError(t('messages.whatsappNotOpen'));
+      const errorMessage = handleError(err);
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
-  };
-
-  const showSuccessToast = () => {
-    // TODO: Implementar sistema de toast global
-    // Por enquanto, apenas console
-    console.log(t('features.sendToNumber.success'));
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,8 +85,7 @@ export const SendToNumber: React.FC<SendToNumberProps> = ({ isOpen, onClose }) =
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <p className="text-sm text-gray-600">
-            {t('features.sendToNumber.description') ||
-             'Digite um número de telefone para abrir uma conversa no WhatsApp Web, mesmo que ele não esteja na sua lista de contatos.'}
+            {t('features.sendToNumber.description')}
           </p>
 
           <Input

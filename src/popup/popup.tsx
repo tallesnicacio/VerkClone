@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './popup.css';
 import { t } from '../i18n';
-import { Button } from '../components/ui';
+import { Button, ToastProvider, ToastContainer, LoadingProvider, GlobalLoading } from '../components/ui';
 import { SendToNumber } from '../components/crm';
 import StorageManager from '../storage';
 import type { Analytics } from '../types';
@@ -193,6 +193,12 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <ToastProvider>
+      <LoadingProvider>
+        <App />
+        <ToastContainer />
+        <GlobalLoading />
+      </LoadingProvider>
+    </ToastProvider>
   </React.StrictMode>
 );
