@@ -4,3 +4,6 @@
 
 export { SendToNumber } from './SendToNumber';
 export type { SendToNumberProps } from './SendToNumber';
+
+export { DesktopInfo } from './DesktopInfo';
+export type { DesktopInfoProps } from './DesktopInfo';

@@ -7,8 +7,30 @@ import type { Contact, MessageResponse } from '../types';
 import * as WhatsAppUtils from '../utils/whatsapp';
 import { generateId } from '../utils/helpers';
 import StorageManager from '../storage';
+import {
+  detectWhatsAppEnvironment,
+  getCompatibilityInfo,
+  logEnvironmentInfo,
+  getEnvironmentName,
+} from '../utils/environment';
 
 console.log('🚀 Verk CRM - Content Script carregado');
+
+// Detectar ambiente e verificar compatibilidade
+const environment = detectWhatsAppEnvironment();
+const compatibility = getCompatibilityInfo();
+
+console.log(`📱 Ambiente detectado: ${getEnvironmentName(environment.type)}`);
+
+if (!compatibility.compatible) {
+  console.warn('⚠️ Verk CRM - Ambiente não compatível');
+  compatibility.warnings.forEach((warning) => console.warn(`  - ${warning}`));
+}
+
+// Log de debug (pode ser removido em produção)
+if (process.env.NODE_ENV === 'development') {
+  logEnvironmentInfo();
+}
 
 /**
  * Classe principal para gerenciar a extensão no WhatsApp Web
@@ -163,6 +185,12 @@ class VerkCRM {
 
     const button = document.createElement('button');
     button.id = 'verk-quick-access';
+
+    // Badge de ambiente
+    const envBadge = compatibility.compatible
+      ? ''
+      : '<span style="position: absolute; top: -4px; right: -4px; background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">!</span>';
+
     button.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
@@ -170,8 +198,9 @@ class VerkCRM {
         <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
+      ${envBadge}
     `;
-    button.title = 'Verk CRM - Ferramentas';
+    button.title = `Verk CRM - ${getEnvironmentName(environment.type)}`;
     button.style.cssText = `
       position: fixed;
       bottom: 80px;
@@ -222,9 +251,58 @@ class VerkCRM {
   private toggleCRMPanel() {
     console.log('🎛️ Alternando painel do CRM...');
 
+    // Se ambiente não é compatível, mostrar aviso
+    if (!compatibility.compatible) {
+      this.showCompatibilityWarning();
+      return;
+    }
+
     // TODO: Implementar painel lateral
     // Por enquanto, apenas mostra uma mensagem
     this.showToast('Painel do CRM em desenvolvimento!', 'info');
+  }
+
+  /**
+   * Mostra aviso de compatibilidade
+   */
+  private showCompatibilityWarning() {
+    const modal = document.createElement('div');
+    modal.className = 'verk-modal-overlay';
+    modal.innerHTML = `
+      <div class="verk-modal" style="max-width: 500px; margin: 20px;">
+        <div style="text-align: center; padding: 20px;">
+          <svg style="width: 64px; height: 64px; color: #f59e0b; margin: 0 auto 16px;" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+          </svg>
+          <h2 style="font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 12px;">
+            Ambiente não compatível
+          </h2>
+          <p style="color: #6b7280; margin-bottom: 20px;">
+            ${compatibility.environment}
+          </p>
+          <div style="text-align: left; background: #fef3c7; border: 1px solid #fbbf24; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+            <p style="font-weight: 600; color: #92400e; margin-bottom: 8px;">⚠️ Avisos:</p>
+            ${compatibility.warnings.map((w) => `<p style="color: #78350f; font-size: 14px; margin: 4px 0;">• ${w}</p>`).join('')}
+          </div>
+          <button
+            onclick="this.closest('.verk-modal-overlay').remove()"
+            class="verk-button verk-button-primary"
+            style="width: 100%; padding: 12px; background: linear-gradient(135deg, #128C7E 0%, #25D366 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;"
+          >
+            Entendi
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Fechar ao clicar no overlay
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
   }
 
   /**
