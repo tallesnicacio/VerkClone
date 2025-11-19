@@ -73,6 +73,7 @@
   "features": {
     "sendToNumber": {
       "title": "Enviar para Número",
+      "description": "Digite um número de telefone para abrir uma conversa no WhatsApp Web, mesmo que ele não esteja na sua lista de contatos.",
       "placeholder": "Digite o número (com DDD)",
       "send": "Abrir Chat",
       "invalidNumber": "Número inválido",
